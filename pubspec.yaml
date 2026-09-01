@@ -1,0 +1,49 @@
+name: solar_icons_flutter
+description: >-
+  The complete Solar Icon Set for Flutter: 7,759 icons across all six styles
+  (linear, outline, bold, broken, line duotone, bold duotone) as tree-shakeable
+  icon fonts. No dependencies.
+version: 1.0.0
+repository: https://github.com/nanaaikinson/solar_icons_flutter
+issue_tracker: https://github.com/nanaaikinson/solar_icons_flutter/issues
+
+topics:
+  - icons
+  - solar
+  - ui
+  - widgets
+
+environment:
+  # Color.withValues / Color.a, used by SolarDuotoneIcon, landed in Flutter 3.27.
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  fonts:
+    - family: SolarIconsLinear
+      fonts:
+        - asset: fonts/SolarIconsLinear.ttf
+    - family: SolarIconsOutline
+      fonts:
+        - asset: fonts/SolarIconsOutline.ttf
+    - family: SolarIconsBold
+      fonts:
+        - asset: fonts/SolarIconsBold.ttf
+    - family: SolarIconsBroken
+      fonts:
+        - asset: fonts/SolarIconsBroken.ttf
+    - family: SolarIconsLineDuotone
+      fonts:
+        - asset: fonts/SolarIconsLineDuotone.ttf
+    - family: SolarIconsBoldDuotone
+      fonts:
+        - asset: fonts/SolarIconsBoldDuotone.ttf

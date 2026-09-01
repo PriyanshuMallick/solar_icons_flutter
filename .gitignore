@@ -1,0 +1,15 @@
+.dart_tool/
+.packages
+build/
+pubspec.lock
+*.iml
+.idea/
+.vscode/
+.DS_Store
+
+# Regeneration scratch: tool/generate.py re-downloads this on demand.
+tool/.cache/
+
+# Python venv for tool/generate.py
+.venv/
+__pycache__/

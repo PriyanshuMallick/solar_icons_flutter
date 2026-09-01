@@ -1,0 +1,9 @@
+.dart_tool/
+build/
+example/build/
+example/.dart_tool/
+example/ios/
+example/macos/
+tool/.cache/
+.venv/
+__pycache__/

@@ -1,0 +1,43 @@
+{
+  "source": "@iconify-json/solar@1.2.10",
+  "unitsPerEm": 1200,
+  "firstCodePoint": "0xe000",
+  "styles": [
+    {
+      "class": "SolarIconsBoldDuotone",
+      "icons": 1325,
+      "duotoneLayers": 1318,
+      "font": "SolarIconsBoldDuotone.ttf"
+    },
+    {
+      "class": "SolarIconsLineDuotone",
+      "icons": 1295,
+      "duotoneLayers": 1270,
+      "font": "SolarIconsLineDuotone.ttf"
+    },
+    {
+      "class": "SolarIconsLinear",
+      "icons": 1283,
+      "duotoneLayers": 0,
+      "font": "SolarIconsLinear.ttf"
+    },
+    {
+      "class": "SolarIconsOutline",
+      "icons": 1280,
+      "duotoneLayers": 0,
+      "font": "SolarIconsOutline.ttf"
+    },
+    {
+      "class": "SolarIconsBroken",
+      "icons": 1284,
+      "duotoneLayers": 0,
+      "font": "SolarIconsBroken.ttf"
+    },
+    {
+      "class": "SolarIconsBold",
+      "icons": 1292,
+      "duotoneLayers": 0,
+      "font": "SolarIconsBold.ttf"
+    }
+  ]
+}

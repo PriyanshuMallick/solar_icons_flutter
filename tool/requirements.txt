@@ -1,0 +1,5 @@
+# Build-time only: used by tool/generate.py to regenerate the fonts and bindings.
+# Not needed to use the package.
+picosvg==0.23.0
+fonttools==4.64.0
+skia-pathops==0.9.2
