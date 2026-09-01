@@ -53,7 +53,8 @@ IconData? solarIconByName(String name, SolarIconStyle style) => switch (style) {
 /// Looks up [name] in a duotone [style].
 ///
 /// Returns null if [style] is not a duotone style, or has no icon called [name].
-SolarDuotoneIconData? solarDuotoneIconByName(String name, SolarIconStyle style) =>
+SolarDuotoneIconData? solarDuotoneIconByName(
+        String name, SolarIconStyle style) =>
     switch (style) {
       SolarIconStyle.boldDuotone => solarBoldDuotoneIcons[name],
       SolarIconStyle.lineDuotone => solarLineDuotoneIcons[name],

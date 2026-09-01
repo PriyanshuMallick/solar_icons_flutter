@@ -69,7 +69,8 @@ void main() {
         expect(solarIconByName('home', style), isNotNull, reason: style.name);
         expect(solarIconByName('definitely-not-an-icon', style), isNull);
       }
-      expect(solarDuotoneIconByName('home', SolarIconStyle.boldDuotone), isNotNull);
+      expect(solarDuotoneIconByName('home', SolarIconStyle.boldDuotone),
+          isNotNull);
       expect(solarDuotoneIconByName('home', SolarIconStyle.bold), isNull);
     });
 
@@ -107,7 +108,10 @@ void main() {
     test('duotone styles are flagged', () {
       expect(
         SolarIconStyle.values.where((s) => s.isDuotone),
-        <SolarIconStyle>[SolarIconStyle.lineDuotone, SolarIconStyle.boldDuotone],
+        <SolarIconStyle>[
+          SolarIconStyle.lineDuotone,
+          SolarIconStyle.boldDuotone
+        ],
       );
     });
   });
@@ -116,7 +120,8 @@ void main() {
     Widget host(Widget child, {IconThemeData? iconTheme}) => Directionality(
           textDirection: TextDirection.ltr,
           child: IconTheme(
-            data: iconTheme ?? const IconThemeData(size: 24, color: Color(0xFF000000)),
+            data: iconTheme ??
+                const IconThemeData(size: 24, color: Color(0xFF000000)),
             // Without this the test surface's tight constraints would stretch
             // the icon to fill the window.
             child: Center(child: child),
@@ -138,7 +143,8 @@ void main() {
 
     testWidgets('secondary is drawn at half alpha by default', (tester) async {
       await tester.pumpWidget(host(
-        const SolarDuotoneIcon(SolarIconsBoldDuotone.home, color: Color(0xFF2244FF)),
+        const SolarDuotoneIcon(SolarIconsBoldDuotone.home,
+            color: Color(0xFF2244FF)),
       ));
 
       final icons = tester.widgetList<Icon>(find.byType(Icon)).toList();
@@ -178,7 +184,8 @@ void main() {
     testWidgets('semanticLabel is exposed to assistive tech', (tester) async {
       final handle = tester.ensureSemantics();
       await tester.pumpWidget(host(
-        const SolarDuotoneIcon(SolarIconsBoldDuotone.home, semanticLabel: 'Home'),
+        const SolarDuotoneIcon(SolarIconsBoldDuotone.home,
+            semanticLabel: 'Home'),
       ));
       expect(find.bySemanticsLabel('Home'), findsOneWidget);
       handle.dispose();

@@ -618,7 +618,8 @@ const Map<String, IconData> solarBrokenIcons = <String, IconData>{
   'lock': SolarIconsBroken.lock,
   'lock-keyhole': SolarIconsBroken.lockKeyhole,
   'lock-keyhole-minimalistic': SolarIconsBroken.lockKeyholeMinimalistic,
-  'lock-keyhole-minimalistic-unlocked': SolarIconsBroken.lockKeyholeMinimalisticUnlocked,
+  'lock-keyhole-minimalistic-unlocked':
+      SolarIconsBroken.lockKeyholeMinimalisticUnlocked,
   'lock-keyhole-unlocked': SolarIconsBroken.lockKeyholeUnlocked,
   'lock-password': SolarIconsBroken.lockPassword,
   'lock-password-unlocked': SolarIconsBroken.lockPasswordUnlocked,
@@ -686,8 +687,10 @@ const Map<String, IconData> solarBrokenIcons = <String, IconData>{
   'microphone-large': SolarIconsBroken.microphoneLarge,
   'minimalistic-magnifier': SolarIconsBroken.minimalisticMagnifier,
   'minimalistic-magnifier-bug': SolarIconsBroken.minimalisticMagnifierBug,
-  'minimalistic-magnifier-zoom-in': SolarIconsBroken.minimalisticMagnifierZoomIn,
-  'minimalistic-magnifier-zoom-out': SolarIconsBroken.minimalisticMagnifierZoomOut,
+  'minimalistic-magnifier-zoom-in':
+      SolarIconsBroken.minimalisticMagnifierZoomIn,
+  'minimalistic-magnifier-zoom-out':
+      SolarIconsBroken.minimalisticMagnifierZoomOut,
   'minimize': SolarIconsBroken.minimize,
   'minimize-square-2': SolarIconsBroken.minimizeSquare2,
   'minimize-square-3': SolarIconsBroken.minimizeSquare3,
@@ -849,7 +852,8 @@ const Map<String, IconData> solarBrokenIcons = <String, IconData>{
   'refresh-square': SolarIconsBroken.refreshSquare,
   'remote-controller-2': SolarIconsBroken.remoteController2,
   'remote-controller': SolarIconsBroken.remoteController,
-  'remote-controller-minimalistic': SolarIconsBroken.remoteControllerMinimalistic,
+  'remote-controller-minimalistic':
+      SolarIconsBroken.remoteControllerMinimalistic,
   'remove-folder': SolarIconsBroken.removeFolder,
   'reorder-2': SolarIconsBroken.reorder2,
   'reorder': SolarIconsBroken.reorder,
@@ -987,7 +991,8 @@ const Map<String, IconData> solarBrokenIcons = <String, IconData>{
   'sleeping-circle': SolarIconsBroken.sleepingCircle,
   'sleeping-square': SolarIconsBroken.sleepingSquare,
   'slider-horizontal': SolarIconsBroken.sliderHorizontal,
-  'slider-minimalistic-horizontal': SolarIconsBroken.sliderMinimalisticHorizontal,
+  'slider-minimalistic-horizontal':
+      SolarIconsBroken.sliderMinimalisticHorizontal,
   'slider-vertical': SolarIconsBroken.sliderVertical,
   'slider-vertical-minimalistic': SolarIconsBroken.sliderVerticalMinimalistic,
   'smart-home-angle': SolarIconsBroken.smartHomeAngle,
@@ -1257,7 +1262,8 @@ const Map<String, IconData> solarBrokenIcons = <String, IconData>{
   'watch-round': SolarIconsBroken.watchRound,
   'watch-square': SolarIconsBroken.watchSquare,
   'watch-square-minimalistic': SolarIconsBroken.watchSquareMinimalistic,
-  'watch-square-minimalistic-charge': SolarIconsBroken.watchSquareMinimalisticCharge,
+  'watch-square-minimalistic-charge':
+      SolarIconsBroken.watchSquareMinimalisticCharge,
   'water': SolarIconsBroken.water,
   'water-sun': SolarIconsBroken.waterSun,
   'waterdrop': SolarIconsBroken.waterdrop,

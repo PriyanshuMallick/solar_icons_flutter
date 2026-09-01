@@ -624,7 +624,8 @@ const Map<String, IconData> solarBoldIcons = <String, IconData>{
   'lock': SolarIconsBold.lock,
   'lock-keyhole': SolarIconsBold.lockKeyhole,
   'lock-keyhole-minimalistic': SolarIconsBold.lockKeyholeMinimalistic,
-  'lock-keyhole-minimalistic-unlocked': SolarIconsBold.lockKeyholeMinimalisticUnlocked,
+  'lock-keyhole-minimalistic-unlocked':
+      SolarIconsBold.lockKeyholeMinimalisticUnlocked,
   'lock-keyhole-unlocked': SolarIconsBold.lockKeyholeUnlocked,
   'lock-password': SolarIconsBold.lockPassword,
   'lock-password-unlocked': SolarIconsBold.lockPasswordUnlocked,
@@ -693,7 +694,8 @@ const Map<String, IconData> solarBoldIcons = <String, IconData>{
   'minimalistic-magnifier': SolarIconsBold.minimalisticMagnifier,
   'minimalistic-magnifier-bug': SolarIconsBold.minimalisticMagnifierBug,
   'minimalistic-magnifier-zoom-in': SolarIconsBold.minimalisticMagnifierZoomIn,
-  'minimalistic-magnifier-zoom-out': SolarIconsBold.minimalisticMagnifierZoomOut,
+  'minimalistic-magnifier-zoom-out':
+      SolarIconsBold.minimalisticMagnifierZoomOut,
   'minimize': SolarIconsBold.minimize,
   'minimize-square-2': SolarIconsBold.minimizeSquare2,
   'minimize-square-3': SolarIconsBold.minimizeSquare3,
@@ -1265,7 +1267,8 @@ const Map<String, IconData> solarBoldIcons = <String, IconData>{
   'watch-round': SolarIconsBold.watchRound,
   'watch-square': SolarIconsBold.watchSquare,
   'watch-square-minimalistic': SolarIconsBold.watchSquareMinimalistic,
-  'watch-square-minimalistic-charge': SolarIconsBold.watchSquareMinimalisticCharge,
+  'watch-square-minimalistic-charge':
+      SolarIconsBold.watchSquareMinimalisticCharge,
   'water': SolarIconsBold.water,
   'water-sun': SolarIconsBold.waterSun,
   'waterdrop': SolarIconsBold.waterdrop,

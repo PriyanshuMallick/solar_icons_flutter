@@ -616,7 +616,8 @@ const Map<String, IconData> solarOutlineIcons = <String, IconData>{
   'list-up': SolarIconsOutline.listUp,
   'list-vertical': SolarIconsOutline.listVertical,
   'lock-keyhole-minimalistic': SolarIconsOutline.lockKeyholeMinimalistic,
-  'lock-keyhole-minimalistic-unlocked': SolarIconsOutline.lockKeyholeMinimalisticUnlocked,
+  'lock-keyhole-minimalistic-unlocked':
+      SolarIconsOutline.lockKeyholeMinimalisticUnlocked,
   'lock-keyhole': SolarIconsOutline.lockKeyhole,
   'lock-keyhole-unlocked': SolarIconsOutline.lockKeyholeUnlocked,
   'lock': SolarIconsOutline.lock,
@@ -684,8 +685,10 @@ const Map<String, IconData> solarOutlineIcons = <String, IconData>{
   'microphone': SolarIconsOutline.microphone,
   'minimalistic-magnifier-bug': SolarIconsOutline.minimalisticMagnifierBug,
   'minimalistic-magnifier': SolarIconsOutline.minimalisticMagnifier,
-  'minimalistic-magnifier-zoom-in': SolarIconsOutline.minimalisticMagnifierZoomIn,
-  'minimalistic-magnifier-zoom-out': SolarIconsOutline.minimalisticMagnifierZoomOut,
+  'minimalistic-magnifier-zoom-in':
+      SolarIconsOutline.minimalisticMagnifierZoomIn,
+  'minimalistic-magnifier-zoom-out':
+      SolarIconsOutline.minimalisticMagnifierZoomOut,
   'minimize': SolarIconsOutline.minimize,
   'minimize-square-2': SolarIconsOutline.minimizeSquare2,
   'minimize-square-3': SolarIconsOutline.minimizeSquare3,
@@ -845,7 +848,8 @@ const Map<String, IconData> solarOutlineIcons = <String, IconData>{
   'refresh': SolarIconsOutline.refresh,
   'refresh-square': SolarIconsOutline.refreshSquare,
   'remote-controller-2': SolarIconsOutline.remoteController2,
-  'remote-controller-minimalistic': SolarIconsOutline.remoteControllerMinimalistic,
+  'remote-controller-minimalistic':
+      SolarIconsOutline.remoteControllerMinimalistic,
   'remote-controller': SolarIconsOutline.remoteController,
   'remove-folder': SolarIconsOutline.removeFolder,
   'reorder-2': SolarIconsOutline.reorder2,
@@ -985,7 +989,8 @@ const Map<String, IconData> solarOutlineIcons = <String, IconData>{
   'sleeping': SolarIconsOutline.sleeping,
   'sleeping-square': SolarIconsOutline.sleepingSquare,
   'slider-horizontal': SolarIconsOutline.sliderHorizontal,
-  'slider-minimalistic-horizontal': SolarIconsOutline.sliderMinimalisticHorizontal,
+  'slider-minimalistic-horizontal':
+      SolarIconsOutline.sliderMinimalisticHorizontal,
   'slider-vertical-minimalistic': SolarIconsOutline.sliderVerticalMinimalistic,
   'slider-vertical': SolarIconsOutline.sliderVertical,
   'smart-home-angle': SolarIconsOutline.smartHomeAngle,
@@ -999,7 +1004,8 @@ const Map<String, IconData> solarOutlineIcons = <String, IconData>{
   'smartphone': SolarIconsOutline.smartphone,
   'smartphone-rotate-2': SolarIconsOutline.smartphoneRotate2,
   'smartphone-rotate-angle': SolarIconsOutline.smartphoneRotateAngle,
-  'smartphone-rotate-orientation': SolarIconsOutline.smartphoneRotateOrientation,
+  'smartphone-rotate-orientation':
+      SolarIconsOutline.smartphoneRotateOrientation,
   'smartphone-update': SolarIconsOutline.smartphoneUpdate,
   'smartphone-vibration': SolarIconsOutline.smartphoneVibration,
   'smile-circle': SolarIconsOutline.smileCircle,
@@ -1251,7 +1257,8 @@ const Map<String, IconData> solarOutlineIcons = <String, IconData>{
   'washing-machine-minimalistic': SolarIconsOutline.washingMachineMinimalistic,
   'washing-machine': SolarIconsOutline.washingMachine,
   'watch-round': SolarIconsOutline.watchRound,
-  'watch-square-minimalistic-charge': SolarIconsOutline.watchSquareMinimalisticCharge,
+  'watch-square-minimalistic-charge':
+      SolarIconsOutline.watchSquareMinimalisticCharge,
   'watch-square-minimalistic': SolarIconsOutline.watchSquareMinimalistic,
   'watch-square': SolarIconsOutline.watchSquare,
   'water': SolarIconsOutline.water,

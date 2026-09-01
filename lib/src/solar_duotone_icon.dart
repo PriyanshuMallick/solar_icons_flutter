@@ -67,7 +67,9 @@ class SolarDuotoneIcon extends StatelessWidget {
           Icon(
             data.secondary,
             size: resolvedSize,
-            color: secondaryColor ?? resolvedColor.withValues(alpha: resolvedColor.a * secondaryOpacity),
+            color: secondaryColor ??
+                resolvedColor.withValues(
+                    alpha: resolvedColor.a * secondaryOpacity),
             textDirection: textDirection,
           ),
           Icon(
@@ -80,10 +82,12 @@ class SolarDuotoneIcon extends StatelessWidget {
       );
     }
 
-    content = SizedBox(width: resolvedSize, height: resolvedSize, child: content);
+    content =
+        SizedBox(width: resolvedSize, height: resolvedSize, child: content);
     if (semanticLabel == null) {
       return ExcludeSemantics(child: content);
     }
-    return Semantics(label: semanticLabel, child: ExcludeSemantics(child: content));
+    return Semantics(
+        label: semanticLabel, child: ExcludeSemantics(child: content));
   }
 }

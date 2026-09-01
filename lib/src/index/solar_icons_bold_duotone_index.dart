@@ -9,7 +9,8 @@ import '../solar_icons_bold_duotone.dart';
 /// Every BoldDuotone icon, keyed by its Solar name (e.g. `'home-smile'`).
 ///
 /// Referencing this map keeps every glyph of this style in the build.
-const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDuotoneIconData>{
+const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons =
+    <String, SolarDuotoneIconData>{
   '4k': SolarIconsBoldDuotone.icon4k,
   'accessibility': SolarIconsBoldDuotone.accessibility,
   'accumulator': SolarIconsBoldDuotone.accumulator,
@@ -100,7 +101,8 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'basketball': SolarIconsBoldDuotone.basketball,
   'bath': SolarIconsBoldDuotone.bath,
   'battery-charge': SolarIconsBoldDuotone.batteryCharge,
-  'battery-charge-minimalistic': SolarIconsBoldDuotone.batteryChargeMinimalistic,
+  'battery-charge-minimalistic':
+      SolarIconsBoldDuotone.batteryChargeMinimalistic,
   'battery-full': SolarIconsBoldDuotone.batteryFull,
   'battery-full-minimalistic': SolarIconsBoldDuotone.batteryFullMinimalistic,
   'battery-half': SolarIconsBoldDuotone.batteryHalf,
@@ -155,7 +157,8 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'bookmark-circle': SolarIconsBoldDuotone.bookmarkCircle,
   'bookmark-opened': SolarIconsBoldDuotone.bookmarkOpened,
   'bookmark-square': SolarIconsBoldDuotone.bookmarkSquare,
-  'bookmark-square-minimalistic': SolarIconsBoldDuotone.bookmarkSquareMinimalistic,
+  'bookmark-square-minimalistic':
+      SolarIconsBoldDuotone.bookmarkSquareMinimalistic,
   'boombox': SolarIconsBoldDuotone.boombox,
   'bot': SolarIconsBoldDuotone.bot,
   'bottle': SolarIconsBoldDuotone.bottle,
@@ -292,7 +295,8 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'cloud-plus': SolarIconsBoldDuotone.cloudPlus,
   'cloud-rain': SolarIconsBoldDuotone.cloudRain,
   'cloud-snowfall': SolarIconsBoldDuotone.cloudSnowfall,
-  'cloud-snowfall-minimalistic': SolarIconsBoldDuotone.cloudSnowfallMinimalistic,
+  'cloud-snowfall-minimalistic':
+      SolarIconsBoldDuotone.cloudSnowfallMinimalistic,
   'cloud-storage': SolarIconsBoldDuotone.cloudStorage,
   'cloud-storm': SolarIconsBoldDuotone.cloudStorm,
   'cloud-sun-2': SolarIconsBoldDuotone.cloudSun2,
@@ -388,7 +392,8 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'dropper-minimalistic': SolarIconsBoldDuotone.dropperMinimalistic,
   'dumbbell': SolarIconsBoldDuotone.dumbbell,
   'dumbbell-large': SolarIconsBoldDuotone.dumbbellLarge,
-  'dumbbell-large-minimalistic': SolarIconsBoldDuotone.dumbbellLargeMinimalistic,
+  'dumbbell-large-minimalistic':
+      SolarIconsBoldDuotone.dumbbellLargeMinimalistic,
   'dumbbell-small': SolarIconsBoldDuotone.dumbbellSmall,
   'dumbbells-2': SolarIconsBoldDuotone.dumbbells2,
   'dumbbells': SolarIconsBoldDuotone.dumbbells,
@@ -616,7 +621,8 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'link-round': SolarIconsBoldDuotone.linkRound,
   'link-square': SolarIconsBoldDuotone.linkSquare,
   'list-arrow-down': SolarIconsBoldDuotone.listArrowDown,
-  'list-arrow-down-minimalistic': SolarIconsBoldDuotone.listArrowDownMinimalistic,
+  'list-arrow-down-minimalistic':
+      SolarIconsBoldDuotone.listArrowDownMinimalistic,
   'list-arrow-up': SolarIconsBoldDuotone.listArrowUp,
   'list-arrow-up-minimalistic': SolarIconsBoldDuotone.listArrowUpMinimalistic,
   'list': SolarIconsBoldDuotone.list,
@@ -634,7 +640,8 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'lock': SolarIconsBoldDuotone.lock,
   'lock-keyhole': SolarIconsBoldDuotone.lockKeyhole,
   'lock-keyhole-minimalistic': SolarIconsBoldDuotone.lockKeyholeMinimalistic,
-  'lock-keyhole-minimalistic-unlocked': SolarIconsBoldDuotone.lockKeyholeMinimalisticUnlocked,
+  'lock-keyhole-minimalistic-unlocked':
+      SolarIconsBoldDuotone.lockKeyholeMinimalisticUnlocked,
   'lock-keyhole-unlocked': SolarIconsBoldDuotone.lockKeyholeUnlocked,
   'lock-password': SolarIconsBoldDuotone.lockPassword,
   'lock-password-unlocked': SolarIconsBoldDuotone.lockPasswordUnlocked,
@@ -686,7 +693,8 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'maximize-square-2': SolarIconsBoldDuotone.maximizeSquare2,
   'maximize-square-3': SolarIconsBoldDuotone.maximizeSquare3,
   'maximize-square': SolarIconsBoldDuotone.maximizeSquare,
-  'maximize-square-minimalistic': SolarIconsBoldDuotone.maximizeSquareMinimalistic,
+  'maximize-square-minimalistic':
+      SolarIconsBoldDuotone.maximizeSquareMinimalistic,
   'medal-ribbon': SolarIconsBoldDuotone.medalRibbon,
   'medal-ribbon-star': SolarIconsBoldDuotone.medalRibbonStar,
   'medal-ribbons-star': SolarIconsBoldDuotone.medalRibbonsStar,
@@ -708,17 +716,22 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'microphone-large': SolarIconsBoldDuotone.microphoneLarge,
   'minimalistic-magnifer': SolarIconsBoldDuotone.minimalisticMagnifer,
   'minimalistic-magnifer-bug': SolarIconsBoldDuotone.minimalisticMagniferBug,
-  'minimalistic-magnifer-zoom-in': SolarIconsBoldDuotone.minimalisticMagniferZoomIn,
-  'minimalistic-magnifer-zoom-out': SolarIconsBoldDuotone.minimalisticMagniferZoomOut,
+  'minimalistic-magnifer-zoom-in':
+      SolarIconsBoldDuotone.minimalisticMagniferZoomIn,
+  'minimalistic-magnifer-zoom-out':
+      SolarIconsBoldDuotone.minimalisticMagniferZoomOut,
   'minimalistic-magnifier': SolarIconsBoldDuotone.minimalisticMagnifier,
   'minimalistic-magnifier-bug': SolarIconsBoldDuotone.minimalisticMagnifierBug,
-  'minimalistic-magnifier-zoom-in': SolarIconsBoldDuotone.minimalisticMagnifierZoomIn,
-  'minimalistic-magnifier-zoom-out': SolarIconsBoldDuotone.minimalisticMagnifierZoomOut,
+  'minimalistic-magnifier-zoom-in':
+      SolarIconsBoldDuotone.minimalisticMagnifierZoomIn,
+  'minimalistic-magnifier-zoom-out':
+      SolarIconsBoldDuotone.minimalisticMagnifierZoomOut,
   'minimize': SolarIconsBoldDuotone.minimize,
   'minimize-square-2': SolarIconsBoldDuotone.minimizeSquare2,
   'minimize-square-3': SolarIconsBoldDuotone.minimizeSquare3,
   'minimize-square': SolarIconsBoldDuotone.minimizeSquare,
-  'minimize-square-minimalistic': SolarIconsBoldDuotone.minimizeSquareMinimalistic,
+  'minimize-square-minimalistic':
+      SolarIconsBoldDuotone.minimizeSquareMinimalistic,
   'minus': SolarIconsBoldDuotone.minus,
   'minus-circle': SolarIconsBoldDuotone.minusCircle,
   'minus-square': SolarIconsBoldDuotone.minusSquare,
@@ -785,7 +798,8 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'passport-minimalistic': SolarIconsBoldDuotone.passportMinimalistic,
   'password': SolarIconsBoldDuotone.password,
   'password-minimalistic': SolarIconsBoldDuotone.passwordMinimalistic,
-  'password-minimalistic-input': SolarIconsBoldDuotone.passwordMinimalisticInput,
+  'password-minimalistic-input':
+      SolarIconsBoldDuotone.passwordMinimalisticInput,
   'pause': SolarIconsBoldDuotone.pause,
   'pause-circle': SolarIconsBoldDuotone.pauseCircle,
   'paw': SolarIconsBoldDuotone.paw,
@@ -879,7 +893,8 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'refresh-square': SolarIconsBoldDuotone.refreshSquare,
   'remote-controller-2': SolarIconsBoldDuotone.remoteController2,
   'remote-controller': SolarIconsBoldDuotone.remoteController,
-  'remote-controller-minimalistic': SolarIconsBoldDuotone.remoteControllerMinimalistic,
+  'remote-controller-minimalistic':
+      SolarIconsBoldDuotone.remoteControllerMinimalistic,
   'remove-folder': SolarIconsBoldDuotone.removeFolder,
   'reorder-2': SolarIconsBoldDuotone.reorder2,
   'reorder': SolarIconsBoldDuotone.reorder,
@@ -919,7 +934,8 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'round-arrow-up': SolarIconsBoldDuotone.roundArrowUp,
   'round-double-alt-arrow-down': SolarIconsBoldDuotone.roundDoubleAltArrowDown,
   'round-double-alt-arrow-left': SolarIconsBoldDuotone.roundDoubleAltArrowLeft,
-  'round-double-alt-arrow-right': SolarIconsBoldDuotone.roundDoubleAltArrowRight,
+  'round-double-alt-arrow-right':
+      SolarIconsBoldDuotone.roundDoubleAltArrowRight,
   'round-double-alt-arrow-up': SolarIconsBoldDuotone.roundDoubleAltArrowUp,
   'round-graph': SolarIconsBoldDuotone.roundGraph,
   'round-sort-horizontal': SolarIconsBoldDuotone.roundSortHorizontal,
@@ -984,7 +1000,8 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'shield-check': SolarIconsBoldDuotone.shieldCheck,
   'shield-cross': SolarIconsBoldDuotone.shieldCross,
   'shield-keyhole': SolarIconsBoldDuotone.shieldKeyhole,
-  'shield-keyhole-minimalistic': SolarIconsBoldDuotone.shieldKeyholeMinimalistic,
+  'shield-keyhole-minimalistic':
+      SolarIconsBoldDuotone.shieldKeyholeMinimalistic,
   'shield-minimalistic': SolarIconsBoldDuotone.shieldMinimalistic,
   'shield-minus': SolarIconsBoldDuotone.shieldMinus,
   'shield-network': SolarIconsBoldDuotone.shieldNetwork,
@@ -1022,9 +1039,11 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'sleeping-circle': SolarIconsBoldDuotone.sleepingCircle,
   'sleeping-square': SolarIconsBoldDuotone.sleepingSquare,
   'slider-horizontal': SolarIconsBoldDuotone.sliderHorizontal,
-  'slider-minimalistic-horizontal': SolarIconsBoldDuotone.sliderMinimalisticHorizontal,
+  'slider-minimalistic-horizontal':
+      SolarIconsBoldDuotone.sliderMinimalisticHorizontal,
   'slider-vertical': SolarIconsBoldDuotone.sliderVertical,
-  'slider-vertical-minimalistic': SolarIconsBoldDuotone.sliderVerticalMinimalistic,
+  'slider-vertical-minimalistic':
+      SolarIconsBoldDuotone.sliderVerticalMinimalistic,
   'smart-home-angle': SolarIconsBoldDuotone.smartHomeAngle,
   'smart-home': SolarIconsBoldDuotone.smartHome,
   'smart-speaker-2': SolarIconsBoldDuotone.smartSpeaker2,
@@ -1036,7 +1055,8 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'smartphone': SolarIconsBoldDuotone.smartphone,
   'smartphone-rotate-2': SolarIconsBoldDuotone.smartphoneRotate2,
   'smartphone-rotate-angle': SolarIconsBoldDuotone.smartphoneRotateAngle,
-  'smartphone-rotate-orientation': SolarIconsBoldDuotone.smartphoneRotateOrientation,
+  'smartphone-rotate-orientation':
+      SolarIconsBoldDuotone.smartphoneRotateOrientation,
   'smartphone-update': SolarIconsBoldDuotone.smartphoneUpdate,
   'smartphone-vibration': SolarIconsBoldDuotone.smartphoneVibration,
   'smile-circle': SolarIconsBoldDuotone.smileCircle,
@@ -1082,9 +1102,12 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'square-arrow-up': SolarIconsBoldDuotone.squareArrowUp,
   'square-bottom-down': SolarIconsBoldDuotone.squareBottomDown,
   'square-bottom-up': SolarIconsBoldDuotone.squareBottomUp,
-  'square-double-alt-arrow-down': SolarIconsBoldDuotone.squareDoubleAltArrowDown,
-  'square-double-alt-arrow-left': SolarIconsBoldDuotone.squareDoubleAltArrowLeft,
-  'square-double-alt-arrow-right': SolarIconsBoldDuotone.squareDoubleAltArrowRight,
+  'square-double-alt-arrow-down':
+      SolarIconsBoldDuotone.squareDoubleAltArrowDown,
+  'square-double-alt-arrow-left':
+      SolarIconsBoldDuotone.squareDoubleAltArrowLeft,
+  'square-double-alt-arrow-right':
+      SolarIconsBoldDuotone.squareDoubleAltArrowRight,
   'square-double-alt-arrow-up': SolarIconsBoldDuotone.squareDoubleAltArrowUp,
   'square-forward': SolarIconsBoldDuotone.squareForward,
   'square-share-line': SolarIconsBoldDuotone.squareShareLine,
@@ -1293,11 +1316,13 @@ const Map<String, SolarDuotoneIconData> solarBoldDuotoneIcons = <String, SolarDu
   'wallet-money': SolarIconsBoldDuotone.walletMoney,
   'wallpaper': SolarIconsBoldDuotone.wallpaper,
   'washing-machine': SolarIconsBoldDuotone.washingMachine,
-  'washing-machine-minimalistic': SolarIconsBoldDuotone.washingMachineMinimalistic,
+  'washing-machine-minimalistic':
+      SolarIconsBoldDuotone.washingMachineMinimalistic,
   'watch-round': SolarIconsBoldDuotone.watchRound,
   'watch-square': SolarIconsBoldDuotone.watchSquare,
   'watch-square-minimalistic': SolarIconsBoldDuotone.watchSquareMinimalistic,
-  'watch-square-minimalistic-charge': SolarIconsBoldDuotone.watchSquareMinimalisticCharge,
+  'watch-square-minimalistic-charge':
+      SolarIconsBoldDuotone.watchSquareMinimalisticCharge,
   'water': SolarIconsBoldDuotone.water,
   'water-sun': SolarIconsBoldDuotone.waterSun,
   'waterdrop': SolarIconsBoldDuotone.waterdrop,

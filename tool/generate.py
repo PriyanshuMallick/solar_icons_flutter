@@ -714,6 +714,15 @@ def main():
         )
     )
 
+    # pana scores formatting, and hand-rolled emission will not match the
+    # formatter exactly. Let `dart format` be the authority on layout.
+    print("4. dart format")
+    subprocess.run(
+        ["dart", "format", str(ROOT / "lib"), str(ROOT / "test")],
+        check=True,
+        capture_output=True,
+    )
+
     (ROOT / "tool" / "manifest.json").write_text(
         json.dumps(
             {

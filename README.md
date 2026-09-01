@@ -176,4 +176,5 @@ The Dart code, build tooling and generated bindings are MIT licensed.
 The icon artwork is the **Solar Icon Set by [480 Design](https://www.figma.com/community/file/1166831539721848736)**,
 licensed **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)**. The fonts in
 `fonts/` are derived from that artwork, so if you ship them you must carry the
-attribution. See [LICENSE](LICENSE).
+attribution. See [NOTICE](NOTICE) for the full attribution terms, and
+[LICENSE](LICENSE) for the MIT text.

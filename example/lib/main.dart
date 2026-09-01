@@ -235,15 +235,18 @@ class _Controls extends StatelessWidget {
                       decoration: InputDecoration(
                         isDense: true,
                         hintText: 'Search $count icons…',
-                        prefixIcon: const Icon(SolarIconsLinear.magnifier, size: 20),
+                        prefixIcon:
+                            const Icon(SolarIconsLinear.magnifier, size: 20),
                         border: const OutlineInputBorder(),
-                        contentPadding: const EdgeInsets.symmetric(vertical: 12),
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 12),
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(width: 12),
-                Icon(SolarIconsLinear.textCircle, size: 18, color: theme.hintColor),
+                Icon(SolarIconsLinear.textCircle,
+                    size: 18, color: theme.hintColor),
                 SizedBox(
                   width: 120,
                   child: Slider(
@@ -255,7 +258,8 @@ class _Controls extends StatelessWidget {
                 ),
                 SizedBox(
                   width: 34,
-                  child: Text('${size.round()}', style: theme.textTheme.labelMedium),
+                  child: Text('${size.round()}',
+                      style: theme.textTheme.labelMedium),
                 ),
               ],
             ),
@@ -268,7 +272,8 @@ class _Controls extends StatelessWidget {
 }
 
 class _IconTile extends StatelessWidget {
-  const _IconTile({required this.entry, required this.style, required this.size});
+  const _IconTile(
+      {required this.entry, required this.style, required this.size});
 
   final _Entry entry;
   final SolarIconStyle style;
@@ -285,7 +290,8 @@ class _IconTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           if (duotone != null)
-            SolarDuotoneIcon(duotone, size: size, color: theme.colorScheme.primary)
+            SolarDuotoneIcon(duotone,
+                size: size, color: theme.colorScheme.primary)
           else
             Icon(entry.icon, size: size, color: theme.colorScheme.primary),
           const SizedBox(height: 6),
@@ -296,7 +302,8 @@ class _IconTile extends StatelessWidget {
               maxLines: 2,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.labelSmall?.copyWith(color: theme.hintColor),
+              style:
+                  theme.textTheme.labelSmall?.copyWith(color: theme.hintColor),
             ),
           ),
         ],
@@ -308,13 +315,15 @@ class _IconTile extends StatelessWidget {
 String _dartName(String solarName) {
   const overrides = <String, String>{'case': 'caseIcon', '4k': 'icon4k'};
   if (overrides.containsKey(solarName)) return overrides[solarName]!;
-  final parts = solarName.split(RegExp(r'[^A-Za-z0-9]+')).where((p) => p.isNotEmpty);
+  final parts =
+      solarName.split(RegExp(r'[^A-Za-z0-9]+')).where((p) => p.isNotEmpty);
   return parts.first.toLowerCase() +
       parts.skip(1).map((p) => p[0].toUpperCase() + p.substring(1)).join();
 }
 
 String _snippetFor(_Entry entry, SolarIconStyle style) {
-  final cls = 'SolarIcons${style.name[0].toUpperCase()}${style.name.substring(1)}';
+  final cls =
+      'SolarIcons${style.name[0].toUpperCase()}${style.name.substring(1)}';
   final ref = '$cls.${_dartName(entry.name)}';
   return style.isDuotone ? 'SolarDuotoneIcon($ref)' : 'Icon($ref)';
 }
@@ -337,17 +346,21 @@ void _showDetail(BuildContext context, _Entry entry, SolarIconStyle style) {
               children: <Widget>[
                 for (final s in <double>[20, 32, 48, 72])
                   if (entry.duotone case final d?)
-                    SolarDuotoneIcon(d, size: s, color: theme.colorScheme.primary)
+                    SolarDuotoneIcon(d,
+                        size: s, color: theme.colorScheme.primary)
                   else
                     Icon(entry.icon, size: s, color: theme.colorScheme.primary),
               ],
             ),
             const SizedBox(height: 24),
-            Text(entry.name, textAlign: TextAlign.center, style: theme.textTheme.titleMedium),
+            Text(entry.name,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.titleMedium),
             Text(
               style.label,
               textAlign: TextAlign.center,
-              style: theme.textTheme.bodySmall?.copyWith(color: theme.hintColor),
+              style:
+                  theme.textTheme.bodySmall?.copyWith(color: theme.hintColor),
             ),
             const SizedBox(height: 20),
             OutlinedButton.icon(
@@ -385,7 +398,8 @@ class _Empty extends StatelessWidget {
               size: 56, color: theme.hintColor),
           const SizedBox(height: 12),
           Text('No ${style.label} icon matches “$query”',
-              style: theme.textTheme.bodyMedium?.copyWith(color: theme.hintColor)),
+              style:
+                  theme.textTheme.bodyMedium?.copyWith(color: theme.hintColor)),
         ],
       ),
     );

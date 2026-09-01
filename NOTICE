@@ -1,0 +1,25 @@
+solar_icons_flutter bundles two separately licensed things.
+
+
+1. Package code — MIT
+--------------------------------------------------------------------------
+Copyright (c) 2026 Nana Kwesi Ofosu-Aikins. See LICENSE.
+
+Covers the Dart source in lib/, the build tooling in tool/, the example app,
+and the generated Dart bindings.
+
+
+2. Icon artwork — CC BY 4.0
+--------------------------------------------------------------------------
+Solar Icon Set
+Copyright (c) 480 Design
+https://www.figma.com/community/file/1166831539721848736
+
+Licensed under the Creative Commons Attribution 4.0 International License:
+https://creativecommons.org/licenses/by/4.0/
+
+Covers every glyph in the TrueType fonts under fonts/, which are derived from
+that artwork. Redistributing this package, or an application that bundles
+these fonts, carries the CC BY 4.0 attribution requirement: credit "Solar Icon
+Set by 480 Design", link to the licence, and note that the artwork was
+converted to font outlines.
