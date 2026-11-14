@@ -63,6 +63,11 @@ ASCENDER = 1000
 DESCENDER = -200  # ASCENDER - DESCENDER == UPEM, so Icon() centres exactly.
 FIRST_CODEPOINT = 0xE000
 
+# Every code point ever assigned, per style. Icons keep theirs across source
+# bumps, and new icons are appended after the highest one, so a font from one
+# release never draws the wrong glyph for a constant compiled against another.
+CODEPOINTS = ROOT / "tool" / "codepoints.json"
+
 # The fonts are checked in, so their bytes must be reproducible. fontTools stamps
 # head.created/modified with the wall clock, which would turn every regeneration
 # into a 2.9 MB binary diff with no glyph changes. Seconds since fontTools' epoch
@@ -421,6 +426,21 @@ def to_layers(style_is_duotone: bool, layers: dict) -> tuple[str, str | None]:
 # --------------------------------------------------------------------------- 3
 
 
+def assign_codepoints(locked: dict, bases: list[str], step: int) -> dict:
+    """Keep the code points in `locked` and append new `bases` after the highest.
+
+    `locked` maps Solar base names to hex code points. Names that left the
+    source stay in it, so their code points are never handed to another icon.
+    """
+    assigned = {base: int(cp, 16) for base, cp in locked.items()}
+    next_cp = max(assigned.values(), default=FIRST_CODEPOINT - step) + step
+    for base in bases:
+        if base not in assigned:
+            assigned[base] = next_cp
+            next_cp += step
+    return assigned
+
+
 def build_font(family: str, contours: list[str], out_path: Path, version: str):
     """contours: SVG path data in codepoint order starting at FIRST_CODEPOINT."""
     from fontTools.fontBuilder import FontBuilder
@@ -648,22 +668,26 @@ def main():
     flat = flatten_all(icons)
 
     print("3. building fonts + Dart")
+    locks = json.loads(CODEPOINTS.read_text()) if CODEPOINTS.exists() else {}
     summary, indexes = [], []
     for suffix, class_suffix, family, duotone in STYLES:
         keys = sorted(k for k in flat if split_key(k)[1] == suffix)
-        contours, entries = [], []
+        step = 2 if duotone else 1
+        assigned = assign_codepoints(
+            locks.get(class_suffix, {}), [split_key(k)[0] for k in keys], step
+        )
+        locks[class_suffix] = {base: f"0x{cp:x}" for base, cp in assigned.items()}
+        contours = [""] * (max(assigned.values()) + step - FIRST_CODEPOINT)
+        entries = []
         n_secondary = 0
-        for index, key in enumerate(keys):
+        for key in keys:
             base = split_key(key)[0]
+            cp = assigned[base]
             primary, secondary = to_layers(duotone, flat[key])
+            contours[cp - FIRST_CODEPOINT] = primary
             if duotone:
-                cp = FIRST_CODEPOINT + index * 2
-                contours.append(primary)
-                contours.append(secondary or "")
+                contours[cp + 1 - FIRST_CODEPOINT] = secondary or ""
                 n_secondary += 1 if secondary else 0
-            else:
-                cp = FIRST_CODEPOINT + index
-                contours.append(primary)
             entries.append((dart_name(base), base, cp))
 
         names = Counter(name for name, _, _ in entries)
@@ -722,6 +746,8 @@ def main():
         check=True,
         capture_output=True,
     )
+
+    CODEPOINTS.write_text(json.dumps(locks, indent=2, sort_keys=True) + "\n")
 
     (ROOT / "tool" / "manifest.json").write_text(
         json.dumps(
