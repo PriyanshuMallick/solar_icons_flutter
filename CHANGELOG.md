@@ -12,6 +12,9 @@
   SVG does. `SolarDuotoneIconData.overlaps` holds the extra layers, which
   `SolarDuotoneIcon` draws between the secondary and primary layers. 37 icons use it,
   including `skirt`, `leaf`, `bookmark-opened` and `palette`.
+- Fonts put the baseline at the bottom of the em. Flutter rounds the baseline to a whole
+  pixel, so at 1000/1200 of the icon size glyphs sat up to half a pixel off their
+  outlines (at 16, 28, 40 and 64 px, for example). Glyph shapes are unchanged.
 
 ## 1.0.0
 

@@ -59,8 +59,11 @@ STYLES = [
 UPEM = 1200
 SVG_SIZE = 24
 SCALE = UPEM / SVG_SIZE  # 50 font units per SVG unit
-ASCENDER = 1000
-DESCENDER = -200  # ASCENDER - DESCENDER == UPEM, so Icon() centres exactly.
+# The baseline sits at the bottom of the em, a whole pixel at any whole-number
+# icon size. With it at 1000/1200 of the size, Flutter rounds it to the nearest
+# pixel and glyphs land up to half a pixel off, differently at every size.
+ASCENDER = 1200
+DESCENDER = 0  # ASCENDER - DESCENDER == UPEM, so Icon() centres exactly.
 FIRST_CODEPOINT = 0xE000
 
 # Every code point ever assigned, per style. Icons keep theirs across source
