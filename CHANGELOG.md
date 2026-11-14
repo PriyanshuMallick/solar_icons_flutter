@@ -1,3 +1,14 @@
+## 1.1.0
+
+- Updates the icon set to `@iconify-json/solar@1.2.15`: 1,554 new icons (259 names
+  such as `blocks`, `shield-off`, `git-branch` and `table`), for 9,313 in total. Solar
+  also redrew some existing icons in this release.
+- Every 1.0.0 icon keeps its name and code point. The 58 icons Solar renamed (for
+  example `chat-dots`, now `chat-square-dots`) ship under both names.
+- `tool/generate.py` resolves `<use href>` references and shapes clipped by a white
+  mask, both new in this Solar release, and records code points in
+  `tool/codepoints.json`.
+
 ## 1.0.0
 
 Initial release.

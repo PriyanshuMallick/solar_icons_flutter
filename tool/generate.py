@@ -43,7 +43,7 @@ ROOT = Path(__file__).resolve().parent.parent
 FONT_DIR = ROOT / "fonts"
 SRC_DIR = ROOT / "lib" / "src"
 
-ICONIFY_PKG = "@iconify-json/solar@1.2.10"
+ICONIFY_PKG = "@iconify-json/solar@1.2.15"
 
 # Longest suffixes first so `-bold-duotone` is not shortened to `-bold`.
 STYLES = [
@@ -325,6 +325,102 @@ def unmask(body: str):
     return serialise(paint), serialise(cut)
 
 
+_HREFS = ("href", "{http://www.w3.org/1999/xlink}href")
+_INHERITED = (
+    "fill", "fill-rule", "stroke", "stroke-width", "stroke-linecap",
+    "stroke-linejoin", "stroke-miterlimit", "stroke-dasharray", "stroke-dashoffset",
+)
+
+
+def _parse(body: str):
+    import xml.etree.ElementTree as ET
+
+    ET.register_namespace("", _SVG_NS)
+    return ET.fromstring(f'<svg xmlns="{_SVG_NS}">{body}</svg>')
+
+
+def _serialise(root) -> str:
+    import xml.etree.ElementTree as ET
+
+    return "".join(
+        ET.tostring(child, encoding="unicode").replace(f' xmlns="{_SVG_NS}"', "")
+        for child in root
+    )
+
+
+def inline_uses(body: str) -> str:
+    """Replace each `<use href="#id">` with a copy of the element it names.
+
+    picosvg resolves only `xlink:href`, and Solar has started emitting `href`.
+    """
+    if "<use" not in body:
+        return body
+    import copy
+
+    root = _parse(body)
+    targets = {e.get("id"): e for e in root.iter() if e.get("id")}
+    for parent in list(root.iter()):
+        for index, child in enumerate(list(parent)):
+            if _local(child.tag) != "use":
+                continue
+            href = next((child.get(h) for h in _HREFS if child.get(h)), "")
+            target = targets.get(href[1:]) if href.startswith("#") else None
+            if target is None or child.get("x", "0") != "0" or child.get("y", "0") != "0":
+                return body  # not the known idiom; let picosvg report it
+            clone = copy.deepcopy(target)
+            clone.attrib.pop("id")
+            for name, value in child.attrib.items():
+                if name not in _HREFS:
+                    clone.set(name, value)
+            parent[index] = clone
+    return _serialise(root)
+
+
+def split_masked(body: str):
+    """Pull out shapes clipped by an all-white mask: (rest, [(shape, mask)]).
+
+    A mask that paints only full-strength white is a plain clip, so the shape
+    renders as its own geometry intersected with the mask's. picosvg cannot
+    resolve masks, so `flatten` does that intersection itself. Each pulled-out
+    shape takes the presentation attributes it inherited from its groups.
+    """
+    if "mask=" not in body:
+        return body, []
+    root = _parse(body)
+    masks = {e.get("id"): e for e in root.iter() if _local(e.tag) == "mask"}
+    clipped = []
+
+    def walk(element, inherited):
+        inherited = {**inherited, **{a: element.get(a) for a in _INHERITED if element.get(a)}}
+        for child in list(element):
+            ref = child.get("mask", "")
+            mask = masks.get(ref[5:-1]) if ref.startswith("url(#") else None
+            if mask is None:
+                walk(child, inherited)
+                continue
+            shapes = [e for e in mask.iter() if _local(e.tag) in _SHAPE_TAGS]
+            fills = {e.get("fill", mask.get("fill")) for e in shapes}
+            if not shapes or not fills <= {"#fff", "#ffffff", "white"} or any(
+                e.get("stroke") for e in shapes
+            ):
+                raise ValueError(f"unsupported mask {ref}")
+            child.attrib.pop("mask")
+            for name, value in inherited.items():
+                if child.get(name) is None:
+                    child.set(name, value)
+            for shape in shapes:
+                shape.set("fill", "currentColor")
+            clipped.append((_serialise([child]), _serialise(mask)))
+            element.remove(child)
+
+    walk(root, {})
+    for mask in masks.values():
+        for parent in root.iter():
+            if mask in list(parent):
+                parent.remove(mask)
+    return _serialise(root), clipped
+
+
 def flatten(item):
     """Worker: one icon -> {opacity: path_d} or an error string."""
     key, body = item
@@ -332,7 +428,13 @@ def flatten(item):
     from picosvg.svg import SVG
     from picosvg.svg_types import SVGPath
 
-    paint_body, cut_body = unmask(body)
+    import dataclasses
+
+    try:
+        paint_body, cut_body = unmask(inline_uses(body))
+        paint_body, clipped = split_masked(paint_body)
+    except ValueError as e:
+        return key, None, f"markup: {e}"
 
     def pico(markup):
         wrapped = (
@@ -347,8 +449,26 @@ def flatten(item):
     except Exception as e:  # noqa: BLE001 - reported, not swallowed
         return key, None, f"picosvg: {type(e).__name__}: {e}"
 
+    shapes = list(painted.shapes())
+    try:
+        for shape_markup, mask_markup in clipped:
+            mask_shapes = list(pico(mask_markup).shapes())
+            mask = sp.union(
+                [m.as_cmd_seq() for m in mask_shapes],
+                [m.fill_rule or "nonzero" for m in mask_shapes],
+            )
+            for shape in pico(shape_markup).shapes():
+                kept = SVGPath.from_commands(
+                    sp.intersection(
+                        [shape.as_cmd_seq(), mask], [shape.fill_rule or "nonzero", "nonzero"]
+                    )
+                )
+                shapes.append(dataclasses.replace(kept, opacity=shape.opacity))
+    except Exception as e:  # noqa: BLE001
+        return key, None, f"mask: {type(e).__name__}: {e}"
+
     layers: dict[float, list] = {}
-    for shape in painted.shapes():
+    for shape in shapes:
         opacity = float(getattr(shape, "opacity", 1.0)) * float(getattr(shape, "fill_opacity", 1.0))
         opacity = round(opacity, 3)
         if opacity <= 0.0:
@@ -661,14 +781,25 @@ def main():
 
     args.icons_json.parent.mkdir(parents=True, exist_ok=True)
     print(f"1. source: {ICONIFY_PKG}")
-    icons = json.loads(fetch_icons_json(args.icons_json).read_text())["icons"]
+    icon_set = json.loads(fetch_icons_json(args.icons_json).read_text())
+    icons = icon_set["icons"]
+    locks = json.loads(CODEPOINTS.read_text()) if CODEPOINTS.exists() else {}
+    # Solar renames icons by turning the old name into an alias. Names that
+    # already shipped stay, drawn from their new artwork.
+    class_suffixes = {suffix: class_suffix for suffix, class_suffix, *_ in STYLES}
+    for alias, spec in icon_set.get("aliases", {}).items():
+        base, suffix = split_key(alias)
+        if alias in icons or base not in locks.get(class_suffixes.get(suffix), {}):
+            continue
+        if set(spec) != {"parent"} or spec["parent"] not in icons:
+            raise SystemExit(f"shipped icon {alias} became an unsupported alias: {spec}")
+        icons[alias] = icons[spec["parent"]]
     print(f"   {len(icons)} icons")
 
     print("2. flattening (picosvg: stroke -> fill, groups/transforms resolved)")
     flat = flatten_all(icons)
 
     print("3. building fonts + Dart")
-    locks = json.loads(CODEPOINTS.read_text()) if CODEPOINTS.exists() else {}
     summary, indexes = [], []
     for suffix, class_suffix, family, duotone in STYLES:
         keys = sorted(k for k in flat if split_key(k)[1] == suffix)
