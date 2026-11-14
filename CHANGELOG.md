@@ -8,6 +8,10 @@
 - `tool/generate.py` resolves `<use href>` references and shapes clipped by a white
   mask, both new in this Solar release, and records code points in
   `tool/codepoints.json`.
+- Duotone icons whose translucent shapes overlap now render the overlap darker, as the
+  SVG does. `SolarDuotoneIconData.overlaps` holds the extra layers, which
+  `SolarDuotoneIcon` draws between the secondary and primary layers. 37 icons use it,
+  including `skirt`, `leaf`, `bookmark-opened` and `palette`.
 
 ## 1.0.0
 

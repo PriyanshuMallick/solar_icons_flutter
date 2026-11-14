@@ -528,6 +528,9 @@ abstract final class SolarIconsLineDuotone {
     primary: IconData(0xea32, fontFamily: fontFamily, fontPackage: fontPackage),
     secondary:
         IconData(0xea33, fontFamily: fontFamily, fontPackage: fontPackage),
+    overlaps: <IconData>[
+      IconData(0xec24, fontFamily: fontFamily, fontPackage: fontPackage),
+    ],
   );
 
   /// Solar `asteroid` in the LineDuotone style.
@@ -896,6 +899,9 @@ abstract final class SolarIconsLineDuotone {
     primary: IconData(0xe0e0, fontFamily: fontFamily, fontPackage: fontPackage),
     secondary:
         IconData(0xe0e1, fontFamily: fontFamily, fontPackage: fontPackage),
+    overlaps: <IconData>[
+      IconData(0xec26, fontFamily: fontFamily, fontPackage: fontPackage),
+    ],
   );
 
   /// Solar `black-hole-3` in the LineDuotone style.
@@ -3395,6 +3401,9 @@ abstract final class SolarIconsLineDuotone {
     primary: IconData(0xe31e, fontFamily: fontFamily, fontPackage: fontPackage),
     secondary:
         IconData(0xe31f, fontFamily: fontFamily, fontPackage: fontPackage),
+    overlaps: <IconData>[
+      IconData(0xec28, fontFamily: fontFamily, fontPackage: fontPackage),
+    ],
   );
 
   /// Solar `figma-file` in the LineDuotone style.
@@ -4580,6 +4589,9 @@ abstract final class SolarIconsLineDuotone {
     primary: IconData(0xe3ec, fontFamily: fontFamily, fontPackage: fontPackage),
     secondary:
         IconData(0xe3ed, fontFamily: fontFamily, fontPackage: fontPackage),
+    overlaps: <IconData>[
+      IconData(0xec2a, fontFamily: fontFamily, fontPackage: fontPackage),
+    ],
   );
 
   /// Solar `headphones-square-sound` in the LineDuotone style.
@@ -5470,6 +5482,9 @@ abstract final class SolarIconsLineDuotone {
     primary: IconData(0xeb6e, fontFamily: fontFamily, fontPackage: fontPackage),
     secondary:
         IconData(0xeb6f, fontFamily: fontFamily, fontPackage: fontPackage),
+    overlaps: <IconData>[
+      IconData(0xec2c, fontFamily: fontFamily, fontPackage: fontPackage),
+    ],
   );
 
   /// Solar `lock-keyhole` in the LineDuotone style.
@@ -5900,6 +5915,9 @@ abstract final class SolarIconsLineDuotone {
     primary: IconData(0xe528, fontFamily: fontFamily, fontPackage: fontPackage),
     secondary:
         IconData(0xe529, fontFamily: fontFamily, fontPackage: fontPackage),
+    overlaps: <IconData>[
+      IconData(0xec2e, fontFamily: fontFamily, fontPackage: fontPackage),
+    ],
   );
 
   /// Solar `medal-star-circle` in the LineDuotone style.

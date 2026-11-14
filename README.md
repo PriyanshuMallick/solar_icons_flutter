@@ -126,20 +126,20 @@ pixels:
 | Style | Mean difference | 99th percentile | Worst |
 | --- | --: | --: | --: |
 | Bold | 0.20% | 0.38% | 0.65% |
-| Bold Duotone | 0.25% | 3.6% | 10.6% |
+| Bold Duotone | 0.18% | 0.33% | 3.7% |
 | Outline | 0.31% | 0.50% | 0.65% |
 | Line Duotone | 0.73% | 2.0% | 2.7% |
 | Broken | 0.85% | 2.2% | 2.7% |
 | Linear | 0.93% | 2.3% | 2.8% |
 
 The baseline for the stroke-drawn styles is antialiasing along outlined strokes, not
-shape error. One real deviation is known:
+shape error.
 
-- **13 Bold Duotone icons** — `bookmark-opened`, `skirt`, `win-rar`, `winrar`, `leaf`,
-  `atom`, `shop`, `box-minimalistic`, `palette`, `palette-round`, `filters`, `database`,
-  `volleyball-2` — draw translucent shapes that overlap each other, and the overlap
-  composites darker than either shape alone. A two-glyph duotone model can only render
-  one flat shade, so these look slightly lighter than the SVG.
+Where a duotone icon stacks translucent shapes, the overlap composites darker than either
+shape alone. Those icons carry extra `overlaps` layers, drawn at the same half opacity, so
+two stacked shapes render at 75% and three at 87.5%, as in the SVG. The one known
+deviation is `winrar` in Bold Duotone, whose top band is 30% opaque in the source: the
+lightest shade a layer can draw is 50%.
 
 ## Regenerating
 

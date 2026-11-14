@@ -421,8 +421,75 @@ def split_masked(body: str):
     return _serialise(root), clipped
 
 
+def translucent_units(body: str) -> list[tuple[str, int]]:
+    """The translucent units of `body`: (standalone markup, layer count).
+
+    A unit is the outermost element that carries an opacity. SVG composites a
+    unit as a whole, so its own pieces never stack, but two units that overlap
+    composite darker: 50% over 50% is 75%. Duotone layers are all drawn at 50%,
+    so a unit counts as the number of stacked layers nearest its opacity: 0.3
+    is one layer (50%), 0.7 two (75%). Each unit takes the presentation
+    attributes it inherited. Returns [] if a transform sits above a unit.
+    """
+    root = _parse(body)
+    units = []
+
+    def walk(element, inherited) -> bool:
+        for child in element:
+            if _local(child.tag) in _OPACITY_OPAQUE:
+                continue
+            opacity = float(child.get("opacity", 1))
+            if opacity < 1:
+                for name, value in inherited.items():
+                    if child.get(name) is None:
+                        child.set(name, value)
+                child.attrib.pop("opacity")
+                count = min(range(1, 5), key=lambda n: abs(opacity - (1 - 0.5**n)))
+                units.append((_serialise([child]), count))
+                continue
+            if child.get("transform") is not None and len(child):
+                return False
+            if not walk(child, {**inherited, **{a: child.get(a) for a in _INHERITED if child.get(a)}}):
+                return False
+        return True
+
+    return units if walk(root, {}) else []
+
+
+def overlap_layers(units, pico, opaque: str) -> list[str]:
+    """Regions covered by at least 2, 3 and 4 of `units`, as path data.
+
+    Parts hidden under `opaque` (the primary layer's path data) are left out:
+    they never show, and their antialiased edges would darken the primary's.
+    """
+    from picosvg import svg_pathops as sp
+    from picosvg.svg_types import SVGPath
+
+    levels: list[list] = []  # levels[j]: the region covered by more than j layers
+    for unit in (markup for markup, count in units for _ in range(count)):
+        shapes = list(pico(unit).shapes())
+        if not shapes:
+            continue
+        path = list(sp.union([s.as_cmd_seq() for s in shapes], [s.fill_rule or "nonzero" for s in shapes]))
+        for j in range(min(len(levels), 3), 0, -1):
+            deeper = list(sp.intersection([levels[j - 1], path], ["nonzero", "nonzero"]))
+            if j == len(levels):
+                levels.append(deeper)
+            else:
+                levels[j] = list(sp.union([levels[j], deeper], ["nonzero", "nonzero"]))
+        levels[0:1] = [list(sp.union(levels[:1] + [path], ["nonzero"] * (len(levels[:1]) + 1)))]
+    if opaque:
+        hidden = SVGPath(d=opaque).as_cmd_seq()
+        levels[1:] = [list(sp.difference([level, hidden], ["nonzero", "nonzero"])) for level in levels[1:]]
+    out = []
+    for level in levels[1:]:
+        if level and sp.path_area(level, "nonzero") >= 0.02:
+            out.append(SVGPath.from_commands(level).round_floats(3).d.strip())
+    return out
+
+
 def flatten(item):
-    """Worker: one icon -> {opacity: path_d} or an error string."""
+    """Worker: one icon -> {opacity: path_d, "overlaps": [path_d]} or an error string."""
     key, body = item
     from picosvg import svg_pathops as sp
     from picosvg.svg import SVG
@@ -511,6 +578,14 @@ def flatten(item):
             out[opacity] = d
     if not out:
         return key, None, "no visible geometry"
+    if key.endswith("-duotone") and "<mask" not in body:
+        try:
+            opaque = " ".join(d for op, d in out.items() if op >= 1.0)
+            overlaps = overlap_layers(translucent_units(paint_body), pico, opaque)
+        except Exception as e:  # noqa: BLE001
+            return key, None, f"overlap: {type(e).__name__}: {e}"
+        if overlaps:
+            out["overlaps"] = overlaps
     return key, out, None
 
 
@@ -655,8 +730,11 @@ import 'package:flutter/widgets.dart';
 """
 
 
-def emit_dart(class_suffix, family, duotone, entries, version):
-    """entries: [(dart_name, base_name, codepoint)] -- codepoint is the primary."""
+def emit_dart(class_suffix, family, duotone, entries, version, overlaps):
+    """entries: [(dart_name, base_name, codepoint)] -- codepoint is the primary.
+
+    overlaps: {base_name: [codepoint]} for duotone icons with stacked layers.
+    """
     extra = "\nimport 'solar_duotone_icon_data.dart';\n" if duotone else ""
     lines = [DART_HEADER.format(pkg=ICONIFY_PKG, extra_imports=extra)]
     kind = "duotone " if duotone else ""
@@ -682,7 +760,17 @@ def emit_dart(class_suffix, family, duotone, entries, version):
                 f"fontFamily: fontFamily, fontPackage: fontPackage),\n"
                 f"    secondary: IconData(0x{cp + 1:x}, "
                 f"fontFamily: fontFamily, fontPackage: fontPackage),\n"
-                f"  );"
+                + (
+                    "    overlaps: <IconData>[\n"
+                    + "".join(
+                        f"      IconData(0x{o:x}, fontFamily: fontFamily, fontPackage: fontPackage),\n"
+                        for o in overlaps[base]
+                    )
+                    + "    ],\n"
+                    if base in overlaps
+                    else ""
+                )
+                + "  );"
             )
         else:
             lines.append(
@@ -804,8 +892,14 @@ def main():
     for suffix, class_suffix, family, duotone in STYLES:
         keys = sorted(k for k in flat if split_key(k)[1] == suffix)
         step = 2 if duotone else 1
+        stacked = {
+            split_key(k)[0]: flat[k].pop("overlaps") for k in keys if "overlaps" in flat[k]
+        }
         assigned = assign_codepoints(
-            locks.get(class_suffix, {}), [split_key(k)[0] for k in keys], step
+            locks.get(class_suffix, {}),
+            [split_key(k)[0] for k in keys]
+            + [f"{base}/overlap{n}" for base in sorted(stacked) for n in range(1, len(stacked[base]) + 1)],
+            step,
         )
         locks[class_suffix] = {base: f"0x{cp:x}" for base, cp in assigned.items()}
         contours = [""] * (max(assigned.values()) + step - FIRST_CODEPOINT)
@@ -820,6 +914,11 @@ def main():
                 contours[cp + 1 - FIRST_CODEPOINT] = secondary or ""
                 n_secondary += 1 if secondary else 0
             entries.append((dart_name(base), base, cp))
+        overlaps = {}
+        for base, layers in stacked.items():
+            overlaps[base] = [assigned[f"{base}/overlap{n}"] for n in range(1, len(layers) + 1)]
+            for cp, d in zip(overlaps[base], layers):
+                contours[cp - FIRST_CODEPOINT] = d
 
         names = Counter(name for name, _, _ in entries)
         clashes = {n: c for n, c in names.items() if c > 1}
@@ -829,7 +928,7 @@ def main():
         font_path = FONT_DIR / f"{family}.ttf"
         build_font(family, contours, font_path, args.version)
         dart_path = SRC_DIR / f"solar_icons_{suffix.replace('-', '_')}.dart"
-        dart_path.write_text(emit_dart(class_suffix, family, duotone, entries, args.version))
+        dart_path.write_text(emit_dart(class_suffix, family, duotone, entries, args.version, overlaps))
         module = f"src/solar_icons_{suffix.replace('-', '_')}"
         index_path = SRC_DIR / "index" / f"solar_icons_{suffix.replace('-', '_')}_index.dart"
         index_path.parent.mkdir(parents=True, exist_ok=True)

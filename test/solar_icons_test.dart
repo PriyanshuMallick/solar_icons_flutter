@@ -184,6 +184,32 @@ void main() {
       expect(tester.getSize(find.byType(SolarDuotoneIcon)), const Size(40, 40));
     });
 
+    testWidgets('stacked layers sit between secondary and primary',
+        (tester) async {
+      const skirt = SolarIconsBoldDuotone.skirt;
+      expect(skirt.overlaps, hasLength(2));
+      await tester.pumpWidget(host(
+        const SolarDuotoneIcon(skirt, color: Color(0xFF2244FF)),
+      ));
+
+      final icons = tester.widgetList<Icon>(find.byType(Icon)).toList();
+      expect(icons.map((i) => i.icon),
+          [skirt.secondary, ...skirt.overlaps, skirt.primary]);
+      for (final layer in icons.take(3)) {
+        expect(layer.color!.a, closeTo(0.5, 0.001));
+      }
+    });
+
+    test('overlap layers are equality-relevant', () {
+      const skirt = SolarIconsBoldDuotone.skirt;
+      expect(
+        SolarDuotoneIconData(
+            primary: skirt.primary, secondary: skirt.secondary),
+        isNot(skirt),
+      );
+      expect(SolarIconsBoldDuotone.home.overlaps, isEmpty);
+    });
+
     testWidgets('secondary is drawn at half alpha by default', (tester) async {
       await tester.pumpWidget(host(
         const SolarDuotoneIcon(SolarIconsBoldDuotone.home,
